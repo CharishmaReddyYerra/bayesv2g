@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use BayesV2G, please cite this software and the upstream datasets listed in data/README.md."
+title: "BayesV2G: Bayesian variant-to-gene prioritization"
+type: software
+version: 0.1.0
+date-released: 2026-09-25
+authors:
+  - name: "BayesV2G contributors"
+license: MIT
+keywords:
+  - statistical genetics
+  - variant-to-gene
+  - Bayesian inference
+  - GWAS
+  - fine-mapping

@@ -1,0 +1,69 @@
+{
+  "project": "BayesV2G LDL demonstration",
+  "trait": "Low density lipoprotein cholesterol levels",
+  "efo_id": "EFO_0004611",
+  "study_id": "GCST90019512",
+  "genome_build": "GRCh38",
+  "open_targets_endpoint": "https://api.platform.opentargets.org/api/v4/graphql",
+  "open_targets_release": "26.09",
+  "training_repository": "opentargets/locus_to_gene_26.06",
+  "training_revision": "6abe9cc490222986925e1acca696d48c9b2437a4",
+  "training_release": "26.06",
+  "open_targets_snapshot": "data/snapshots/open_targets_26.09_ldl_loci.json",
+  "training_directory": "data/raw/open_targets_l2g_26.06",
+  "sort1_case_directory": "data/snapshots/sort1_case",
+  "prior_scale": 0.75,
+  "posterior_draws": 2000,
+  "random_seed": 20260925,
+  "unresolved_mass": 0.20,
+  "features": [
+    "distanceTssMean",
+    "eQtlColocH4Maximum",
+    "pQtlColocH4Maximum",
+    "sQtlColocH4Maximum",
+    "vepMean",
+    "e2gMean"
+  ],
+  "demo_loci": [
+    {
+      "label": "PCSK9 region",
+      "study_locus_id": "7816d9d3277e4887690cf7591c224bcd"
+    },
+    {
+      "label": "ANGPTL3 region",
+      "study_locus_id": "1446ebf0d3feb2602ea450a2156346af"
+    },
+    {
+      "label": "SORT1/CELSR2/PSRC1 region",
+      "study_locus_id": "5eb8878b948ed248f0832a6a1b27d324"
+    },
+    {
+      "label": "APOB region",
+      "study_locus_id": "b2821c94b2ec7a3298ebed7598b85845"
+    },
+    {
+      "label": "ABCG5/ABCG8 region",
+      "study_locus_id": "c717610c67981574d1f54731afe4cf46"
+    },
+    {
+      "label": "HMGCR region",
+      "study_locus_id": "bca6aa73fca7db990adb7f6b1c1983b1"
+    },
+    {
+      "label": "LPA region",
+      "study_locus_id": "7977a97f16317ac62d1755f723d779db"
+    },
+    {
+      "label": "NPC1L1 region",
+      "study_locus_id": "35996c25686ebaab7ff02700c5adee89"
+    },
+    {
+      "label": "LDLR region",
+      "study_locus_id": "fc8876b06188d2d64001c936b6f11c80"
+    },
+    {
+      "label": "APOE/APOC region",
+      "study_locus_id": "3d8d0092bbd144ceb18ebcb18c28c8e6"
+    }
+  ]
+}

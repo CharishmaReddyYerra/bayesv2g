@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "alt": "T",
+      "b37VariantId": "1_109817590_G_T_b37",
+      "chromosome": "chr1",
+      "datasetId": "gtex_v10",
+      "maf01": true,
+      "pos": 109274968,
+      "ref": "G",
+      "shorthand": null,
+      "snpId": "rs12740374",
+      "snpIdUpper": "RS12740374",
+      "variantId": "chr1_109274968_G_T_b38"
+    }
+  ],
+  "paging_info": {
+    "maxItemsPerPage": 250,
+    "numberOfPages": 1,
+    "page": 0,
+    "totalNumberOfItems": 1
+  }
+}

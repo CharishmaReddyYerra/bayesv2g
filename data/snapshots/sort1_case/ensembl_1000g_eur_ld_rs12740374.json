@@ -1,0 +1,72 @@
+[
+  {
+    "d_prime": "1.000000",
+    "population_name": "1000GENOMES:phase_3:EUR",
+    "r2": "1.000000",
+    "variation1": "rs12740374",
+    "variation2": "rs646776"
+  },
+  {
+    "d_prime": "0.993940",
+    "population_name": "1000GENOMES:phase_3:EUR",
+    "r2": "0.937272",
+    "variation1": "rs12740374",
+    "variation2": "rs1277930"
+  },
+  {
+    "d_prime": "0.975903",
+    "population_name": "1000GENOMES:phase_3:EUR",
+    "r2": "0.924767",
+    "variation1": "rs12740374",
+    "variation2": "rs4970836"
+  },
+  {
+    "d_prime": "1.000000",
+    "population_name": "1000GENOMES:phase_3:EUR",
+    "r2": "0.918346",
+    "variation1": "rs12740374",
+    "variation2": "rs660240"
+  },
+  {
+    "d_prime": "0.944242",
+    "population_name": "1000GENOMES:phase_3:EUR",
+    "r2": "0.860079",
+    "variation1": "rs12740374",
+    "variation2": "rs602633"
+  },
+  {
+    "d_prime": "1.000000",
+    "population_name": "1000GENOMES:phase_3:EUR",
+    "r2": "0.994092",
+    "variation1": "rs12740374",
+    "variation2": "rs629301"
+  },
+  {
+    "d_prime": "1.000000",
+    "population_name": "1000GENOMES:phase_3:EUR",
+    "r2": "1.000000",
+    "variation1": "rs12740374",
+    "variation2": "rs7528419"
+  },
+  {
+    "d_prime": "1.000000",
+    "population_name": "1000GENOMES:phase_3:EUR",
+    "r2": "0.918346",
+    "variation1": "rs12740374",
+    "variation2": "rs3832016"
+  },
+  {
+    "d_prime": "0.993940",
+    "population_name": "1000GENOMES:phase_3:EUR",
+    "r2": "0.937272",
+    "variation1": "rs12740374",
+    "variation2": "rs599839"
+  },
+  {
+    "d_prime": "0.993926",
+    "population_name": "1000GENOMES:phase_3:EUR",
+    "r2": "0.931870",
+    "variation1": "rs12740374",
+    "variation2": "rs583104"
+  }
+]

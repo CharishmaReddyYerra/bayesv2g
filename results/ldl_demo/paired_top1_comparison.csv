@@ -1,0 +1,2 @@
+first_model,second_model,n_loci,top1_difference,ci_lower_95,ci_upper_95,improved_loci,worsened_loci,tied_loci,bootstrap_iterations
+BayesV2G,distance_only,1048.0,0.07299618320610687,0.04580152671755725,0.10162213740458015,153.0,77.0,818.0,10000.0

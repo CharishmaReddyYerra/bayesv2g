@@ -1,0 +1,1727 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BayesV2G LDL report</title>
+  <style>
+    :root { --ink:#18212f; --blue:#1261a0; --cyan:#38a3a5; --paper:#f7f9fc; --line:#dce3ec; }
+    body { margin:0; color:var(--ink); font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:var(--paper); }
+    main { max-width:1160px; margin:0 auto; padding:42px 28px 80px; }
+    h1 { font-size:2.5rem; line-height:1.08; margin:0 0 10px; letter-spacing:-.03em; }
+    h2 { margin-top:42px; border-bottom:1px solid var(--line); padding-bottom:8px; }
+    .lede { font-size:1.08rem; max-width:850px; }
+    .warning { background:#fff4dd; border-left:4px solid #e07a2f; padding:13px 16px; margin:24px 0; }
+    .card { background:white; border:1px solid var(--line); border-radius:12px; padding:20px; margin:18px 0; box-shadow:0 4px 18px rgba(24,33,47,.04); overflow:auto; }
+    dl { display:grid; grid-template-columns:210px 1fr; gap:5px 18px; margin:0; } dt { font-weight:700; } dd { margin:0; overflow-wrap:anywhere; }
+    .data-table { width:100%; border-collapse:collapse; font-size:.9rem; }
+    .data-table th { text-align:left; background:#edf2f7; } .data-table th,.data-table td { padding:8px 9px; border-bottom:1px solid var(--line); white-space:nowrap; }
+    img { width:100%; height:auto; display:block; } code { background:#edf2f7; padding:2px 5px; border-radius:4px; }
+    .muted { color:#5f6b7a; }
+  </style>
+</head>
+<body><main>
+  <h1>BayesV2G</h1>
+  <p class="lede">A Bayesian, locus-conditional ranking of candidate genes at ten real LDL-cholesterol GWAS signals.</p>
+  <div class="warning">This is a research prioritization result, not clinical evidence. Probabilities are conditional on an externally prefiltered candidate set, the one-primary-gene model, the listed data releases and the 20% outside-candidate assumption.</div>
+  <h2>Top result at each signal</h2>
+  <p>The live API exposes candidates only after an external L2G score threshold of 0.05. The table therefore shows both the within-set conditional probability and the probability after unresolved mass. 2 loci have only one surfaced candidate; their conditional value is structurally 1.0 and is not evidence-derived certainty.</p>
+  <div class="card"><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Locus</th>
+      <th>Lead variant</th>
+      <th>Top gene</th>
+      <th>Candidates</th>
+      <th>Singleton</th>
+      <th>Conditional posterior</th>
+      <th>Absolute posterior</th>
+      <th>P05</th>
+      <th>P95</th>
+      <th>Unresolved</th>
+      <th>Evidence coverage</th>
+      <th>Distance (kb)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PCSK9 region</td>
+      <td>rs4500361</td>
+      <td>PCSK9</td>
+      <td>3</td>
+      <td>False</td>
+      <td>0.506</td>
+      <td>0.404</td>
+      <td>0.399</td>
+      <td>0.410</td>
+      <td>0.200</td>
+      <td>40%</td>
+      <td>14.3</td>
+    </tr>
+    <tr>
+      <td>ANGPTL3 region</td>
+      <td>rs12239736</td>
+      <td>DOCK7</td>
+      <td>3</td>
+      <td>False</td>
+      <td>0.789</td>
+      <td>0.599</td>
+      <td>0.586</td>
+      <td>0.612</td>
+      <td>0.240</td>
+      <td>60%</td>
+      <td>68.2</td>
+    </tr>
+    <tr>
+      <td>SORT1/CELSR2/PSRC1 region</td>
+      <td>rs12740374</td>
+      <td>CELSR2</td>
+      <td>3</td>
+      <td>False</td>
+      <td>0.950</td>
+      <td>0.760</td>
+      <td>0.755</td>
+      <td>0.764</td>
+      <td>0.200</td>
+      <td>100%</td>
+      <td>25.4</td>
+    </tr>
+    <tr>
+      <td>APOB region</td>
+      <td>rs1042034</td>
+      <td>APOB</td>
+      <td>1</td>
+      <td>True</td>
+      <td>1.000</td>
+      <td>0.770</td>
+      <td>0.770</td>
+      <td>0.770</td>
+      <td>0.230</td>
+      <td>20%</td>
+      <td>41.7</td>
+    </tr>
+    <tr>
+      <td>ABCG5/ABCG8 region</td>
+      <td>rs4245791</td>
+      <td>ABCG8</td>
+      <td>2</td>
+      <td>False</td>
+      <td>0.905</td>
+      <td>0.724</td>
+      <td>0.715</td>
+      <td>0.733</td>
+      <td>0.200</td>
+      <td>60%</td>
+      <td>15.3</td>
+    </tr>
+    <tr>
+      <td>HMGCR region</td>
+      <td>rs184692007</td>
+      <td>HMGCR</td>
+      <td>2</td>
+      <td>False</td>
+      <td>0.947</td>
+      <td>0.722</td>
+      <td>0.717</td>
+      <td>0.726</td>
+      <td>0.238</td>
+      <td>60%</td>
+      <td>65.6</td>
+    </tr>
+    <tr>
+      <td>LPA region</td>
+      <td>rs10455872</td>
+      <td>LPA</td>
+      <td>2</td>
+      <td>False</td>
+      <td>0.789</td>
+      <td>0.631</td>
+      <td>0.621</td>
+      <td>0.641</td>
+      <td>0.200</td>
+      <td>20%</td>
+      <td>75.2</td>
+    </tr>
+    <tr>
+      <td>NPC1L1 region</td>
+      <td>rs2073547</td>
+      <td>NPC1L1</td>
+      <td>5</td>
+      <td>False</td>
+      <td>0.957</td>
+      <td>0.764</td>
+      <td>0.759</td>
+      <td>0.769</td>
+      <td>0.201</td>
+      <td>60%</td>
+      <td>1.4</td>
+    </tr>
+    <tr>
+      <td>LDLR region</td>
+      <td>rs28493980</td>
+      <td>LDLR</td>
+      <td>1</td>
+      <td>True</td>
+      <td>1.000</td>
+      <td>0.800</td>
+      <td>0.800</td>
+      <td>0.800</td>
+      <td>0.200</td>
+      <td>20%</td>
+      <td>12.1</td>
+    </tr>
+    <tr>
+      <td>APOE/APOC region</td>
+      <td>rs429358</td>
+      <td>APOE</td>
+      <td>4</td>
+      <td>False</td>
+      <td>1.000</td>
+      <td>0.800</td>
+      <td>0.800</td>
+      <td>0.800</td>
+      <td>0.200</td>
+      <td>80%</td>
+      <td>4.9</td>
+    </tr>
+  </tbody>
+</table></div>
+  <div class="card"><img src="figures/posterior_rankings.png" alt="Posterior candidate-gene rankings"></div>
+  <h2>Raw-data audit: rs12740374</h2>
+  <p>A separately downloaded, Tabix-sliced 1 Mb region from GWAS Catalog study <code>GCST90018961</code> contains 5,772 real summary-statistic rows. A transparent single-signal Wakefield-ABF check assigns the lead variant an approximate PIP of 0.990. This approximation ignores LD and is a teaching/audit calculation; the main ranking uses Open Targets' SuSiE-inf credible set from <code>GCST90019512</code>.</p>
+  <div class="card"><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Variant</th>
+      <th>GRCh38 position</th>
+      <th>Beta</th>
+      <th>SE</th>
+      <th>GWAS p-value</th>
+      <th>Approx. PIP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>rs12740374</td>
+      <td>109274968</td>
+      <td>-0.1173</td>
+      <td>0.0027</td>
+      <td>9.58e-411</td>
+      <td>0.9901</td>
+    </tr>
+    <tr>
+      <td>rs7528419</td>
+      <td>109274570</td>
+      <td>-0.1170</td>
+      <td>0.0027</td>
+      <td>1.05e-409</td>
+      <td>0.0080</td>
+    </tr>
+    <tr>
+      <td>rs646776</td>
+      <td>109275908</td>
+      <td>0.1169</td>
+      <td>0.0027</td>
+      <td>2.78e-409</td>
+      <td>0.0016</td>
+    </tr>
+    <tr>
+      <td>rs629301</td>
+      <td>109275684</td>
+      <td>0.1168</td>
+      <td>0.0027</td>
+      <td>4.04e-409</td>
+      <td>0.0003</td>
+    </tr>
+    <tr>
+      <td>rs660240</td>
+      <td>109275216</td>
+      <td>0.1146</td>
+      <td>0.0027</td>
+      <td>2.91e-384</td>
+      <td>0.0000</td>
+    </tr>
+  </tbody>
+</table></div>
+  <p>Regional, allele-matched summary statistics from eQTL Catalogue were then colocalized with the GWAS using a classic five-hypothesis single-signal ABF calculation. The liver eQTL data support a shared signal for all three genes, while the available plasma SORT1 pQTL does not show comparable H4 support. This calculation assumes at most one causal variant per trait and ignores LD. Because PP(H4) is prior-dependent, the table includes common effect-prior variances W=.01, .04 (the primary column), and .16.</p>
+  <div class="card"><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Evidence</th>
+      <th>Dataset</th>
+      <th>Gene</th>
+      <th>Shared SNVs</th>
+      <th>PP(H3)</th>
+      <th>PP(H4)</th>
+      <th>PP(H4), W=.01</th>
+      <th>PP(H4), W=.16</th>
+      <th>Top shared variant</th>
+      <th>Variant PIP | H4</th>
+      <th>Shared CS size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>liver_eQTL</td>
+      <td>QTD000266</td>
+      <td>SORT1</td>
+      <td>2413</td>
+      <td>0.0000</td>
+      <td>1.0000</td>
+      <td>1.0000</td>
+      <td>1.0000</td>
+      <td>rs12740374</td>
+      <td>1.0000</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>liver_eQTL</td>
+      <td>QTD000266</td>
+      <td>PSRC1</td>
+      <td>2413</td>
+      <td>0.0000</td>
+      <td>1.0000</td>
+      <td>1.0000</td>
+      <td>1.0000</td>
+      <td>rs12740374</td>
+      <td>1.0000</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>liver_eQTL</td>
+      <td>QTD000266</td>
+      <td>CELSR2</td>
+      <td>2413</td>
+      <td>0.0002</td>
+      <td>0.9998</td>
+      <td>0.9998</td>
+      <td>0.9998</td>
+      <td>rs12740374</td>
+      <td>0.9987</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>plasma_pQTL</td>
+      <td>QTD000584</td>
+      <td>SORT1</td>
+      <td>2548</td>
+      <td>0.1295</td>
+      <td>0.0164</td>
+      <td>0.0290</td>
+      <td>0.0089</td>
+      <td>rs12740374</td>
+      <td>0.9898</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table></div>
+  <p>At the same lead variant, GTEx v10 liver reports strong eQTL effects for all three highlighted genes. PSRC1 is nearest by GTEx v39 TSS, while integrated evidence changes the ranking—exactly the distinction between proximity and mediation that BayesV2G is designed to expose.</p>
+  <div class="card"><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gene</th>
+      <th>GTEx v39 TSS distance (bp)</th>
+      <th>GTEx liver NES</th>
+      <th>GTEx p-value</th>
+      <th>BayesV2G rank</th>
+      <th>BayesV2G posterior</th>
+      <th>External L2G</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CELSR2</td>
+      <td>25429</td>
+      <td>1.069</td>
+      <td>4.72e-46</td>
+      <td>1</td>
+      <td>0.760</td>
+      <td>0.956</td>
+    </tr>
+    <tr>
+      <td>SORT1</td>
+      <td>122950</td>
+      <td>1.272</td>
+      <td>1.13e-65</td>
+      <td>2</td>
+      <td>0.037</td>
+      <td>0.990</td>
+    </tr>
+    <tr>
+      <td>PSRC1</td>
+      <td>8218</td>
+      <td>1.242</td>
+      <td>8.47e-50</td>
+      <td>3</td>
+      <td>0.003</td>
+      <td>0.203</td>
+    </tr>
+  </tbody>
+</table></div>
+  <h2>Model and held-out validation</h2>
+  <p>The model is a conditional categorical regression: genes compete within each independently fine-mapped signal and conditional probabilities sum to one before explicit unresolved mass is added. Coefficients use Normal(0, 0.75²) priors and a Laplace posterior approximation.</p>
+  <p>Against the distance-only comparator, the paired top-1 difference is 0.073 (locus-bootstrap 95% interval 0.046 to 0.102; 10,000 resamples).</p>
+  <div class="card"><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Model</th>
+      <th>n_loci</th>
+      <th>top1_accuracy</th>
+      <th>recall_at_3</th>
+      <th>mean_reciprocal_rank</th>
+      <th>multiclass_log_loss</th>
+      <th>brier_score</th>
+      <th>mean_entropy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BayesV2G</td>
+      <td>1048.0</td>
+      <td>0.731</td>
+      <td>0.860</td>
+      <td>0.816</td>
+      <td>1.143</td>
+      <td>0.453</td>
+      <td>1.180</td>
+    </tr>
+    <tr>
+      <td>uniform</td>
+      <td>1048.0</td>
+      <td>0.114</td>
+      <td>0.327</td>
+      <td>0.294</td>
+      <td>2.453</td>
+      <td>0.885</td>
+      <td>2.455</td>
+    </tr>
+    <tr>
+      <td>distance_only</td>
+      <td>1048.0</td>
+      <td>0.658</td>
+      <td>0.803</td>
+      <td>0.744</td>
+      <td>2.085</td>
+      <td>0.784</td>
+      <td>2.182</td>
+    </tr>
+    <tr>
+      <td>eqtl_coloc_only</td>
+      <td>1048.0</td>
+      <td>0.280</td>
+      <td>0.498</td>
+      <td>0.449</td>
+      <td>3.143</td>
+      <td>0.848</td>
+      <td>1.461</td>
+    </tr>
+    <tr>
+      <td>vep_only</td>
+      <td>1048.0</td>
+      <td>0.585</td>
+      <td>0.673</td>
+      <td>0.669</td>
+      <td>1.939</td>
+      <td>0.709</td>
+      <td>2.108</td>
+    </tr>
+  </tbody>
+</table></div>
+  <div class="card"><img src="figures/calibration.png" alt="Held-out probability calibration"></div>
+  <h2>Learned evidence weights</h2>
+  <p>Coefficients are predictive weights for a full one-unit contrast in bounded, correlated evidence features. They are not causal effects and their magnitudes are not directly comparable without considering each feature's distribution.</p>
+  <div class="card"><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Feature</th>
+      <th>Mean</th>
+      <th>SD</th>
+      <th>P05</th>
+      <th>P95</th>
+      <th>exp(Mean)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>distanceTssMean</td>
+      <td>5.957</td>
+      <td>0.344</td>
+      <td>5.392</td>
+      <td>6.522</td>
+      <td>386.45</td>
+    </tr>
+    <tr>
+      <td>eQtlColocH4Maximum</td>
+      <td>1.269</td>
+      <td>0.066</td>
+      <td>1.160</td>
+      <td>1.377</td>
+      <td>3.56</td>
+    </tr>
+    <tr>
+      <td>pQtlColocH4Maximum</td>
+      <td>3.368</td>
+      <td>0.124</td>
+      <td>3.164</td>
+      <td>3.573</td>
+      <td>29.03</td>
+    </tr>
+    <tr>
+      <td>sQtlColocH4Maximum</td>
+      <td>1.620</td>
+      <td>0.075</td>
+      <td>1.496</td>
+      <td>1.744</td>
+      <td>5.05</td>
+    </tr>
+    <tr>
+      <td>vepMean</td>
+      <td>12.766</td>
+      <td>0.441</td>
+      <td>12.041</td>
+      <td>13.492</td>
+      <td>350266.38</td>
+    </tr>
+    <tr>
+      <td>e2gMean</td>
+      <td>3.556</td>
+      <td>0.101</td>
+      <td>3.391</td>
+      <td>3.722</td>
+      <td>35.04</td>
+    </tr>
+  </tbody>
+</table></div>
+  <div class="card"><img src="figures/coefficient_posteriors.png" alt="Posterior coefficient intervals"></div>
+  <h2>Sensitivity</h2>
+  <p>Prior-scale and leave-one-evidence-class-out scenarios were refitted at the MAP estimate; unresolved-mass assumptions of 10% and 40% were also evaluated. 0 locus-scenario combinations changed the top-ranked gene.</p>
+  <div class="card"><table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>scenario</th>
+      <th>scenario_type</th>
+      <th>studyLocusId</th>
+      <th>locus_label</th>
+      <th>top_gene</th>
+      <th>top_probability</th>
+      <th>reference_gene</th>
+      <th>reference_probability</th>
+      <th>top_gene_changed</th>
+      <th>max_probability_change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>prior_scale_0.5</td>
+      <td>model_refit_map</td>
+      <td>7816d9d3277e4887690cf7591c224bcd</td>
+      <td>PCSK9 region</td>
+      <td>PCSK9</td>
+      <td>0.393</td>
+      <td>PCSK9</td>
+      <td>0.405</td>
+      <td>False</td>
+      <td>0.012</td>
+    </tr>
+    <tr>
+      <td>prior_scale_0.5</td>
+      <td>model_refit_map</td>
+      <td>1446ebf0d3feb2602ea450a2156346af</td>
+      <td>ANGPTL3 region</td>
+      <td>DOCK7</td>
+      <td>0.604</td>
+      <td>DOCK7</td>
+      <td>0.600</td>
+      <td>False</td>
+      <td>0.005</td>
+    </tr>
+    <tr>
+      <td>prior_scale_0.5</td>
+      <td>model_refit_map</td>
+      <td>5eb8878b948ed248f0832a6a1b27d324</td>
+      <td>SORT1/CELSR2/PSRC1 region</td>
+      <td>CELSR2</td>
+      <td>0.733</td>
+      <td>CELSR2</td>
+      <td>0.760</td>
+      <td>False</td>
+      <td>0.027</td>
+    </tr>
+    <tr>
+      <td>prior_scale_0.5</td>
+      <td>model_refit_map</td>
+      <td>b2821c94b2ec7a3298ebed7598b85845</td>
+      <td>APOB region</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>prior_scale_0.5</td>
+      <td>model_refit_map</td>
+      <td>c717610c67981574d1f54731afe4cf46</td>
+      <td>ABCG5/ABCG8 region</td>
+      <td>ABCG8</td>
+      <td>0.714</td>
+      <td>ABCG8</td>
+      <td>0.724</td>
+      <td>False</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <td>prior_scale_0.5</td>
+      <td>model_refit_map</td>
+      <td>bca6aa73fca7db990adb7f6b1c1983b1</td>
+      <td>HMGCR region</td>
+      <td>HMGCR</td>
+      <td>0.724</td>
+      <td>HMGCR</td>
+      <td>0.722</td>
+      <td>False</td>
+      <td>0.002</td>
+    </tr>
+    <tr>
+      <td>prior_scale_0.5</td>
+      <td>model_refit_map</td>
+      <td>7977a97f16317ac62d1755f723d779db</td>
+      <td>LPA region</td>
+      <td>LPA</td>
+      <td>0.582</td>
+      <td>LPA</td>
+      <td>0.631</td>
+      <td>False</td>
+      <td>0.049</td>
+    </tr>
+    <tr>
+      <td>prior_scale_0.5</td>
+      <td>model_refit_map</td>
+      <td>35996c25686ebaab7ff02700c5adee89</td>
+      <td>NPC1L1 region</td>
+      <td>NPC1L1</td>
+      <td>0.766</td>
+      <td>NPC1L1</td>
+      <td>0.764</td>
+      <td>False</td>
+      <td>0.002</td>
+    </tr>
+    <tr>
+      <td>prior_scale_0.5</td>
+      <td>model_refit_map</td>
+      <td>fc8876b06188d2d64001c936b6f11c80</td>
+      <td>LDLR region</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>prior_scale_0.5</td>
+      <td>model_refit_map</td>
+      <td>3d8d0092bbd144ceb18ebcb18c28c8e6</td>
+      <td>APOE/APOC region</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>prior_scale_1.5</td>
+      <td>model_refit_map</td>
+      <td>7816d9d3277e4887690cf7591c224bcd</td>
+      <td>PCSK9 region</td>
+      <td>PCSK9</td>
+      <td>0.424</td>
+      <td>PCSK9</td>
+      <td>0.405</td>
+      <td>False</td>
+      <td>0.019</td>
+    </tr>
+    <tr>
+      <td>prior_scale_1.5</td>
+      <td>model_refit_map</td>
+      <td>1446ebf0d3feb2602ea450a2156346af</td>
+      <td>ANGPTL3 region</td>
+      <td>DOCK7</td>
+      <td>0.593</td>
+      <td>DOCK7</td>
+      <td>0.600</td>
+      <td>False</td>
+      <td>0.006</td>
+    </tr>
+    <tr>
+      <td>prior_scale_1.5</td>
+      <td>model_refit_map</td>
+      <td>5eb8878b948ed248f0832a6a1b27d324</td>
+      <td>SORT1/CELSR2/PSRC1 region</td>
+      <td>CELSR2</td>
+      <td>0.782</td>
+      <td>CELSR2</td>
+      <td>0.760</td>
+      <td>False</td>
+      <td>0.022</td>
+    </tr>
+    <tr>
+      <td>prior_scale_1.5</td>
+      <td>model_refit_map</td>
+      <td>b2821c94b2ec7a3298ebed7598b85845</td>
+      <td>APOB region</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>prior_scale_1.5</td>
+      <td>model_refit_map</td>
+      <td>c717610c67981574d1f54731afe4cf46</td>
+      <td>ABCG5/ABCG8 region</td>
+      <td>ABCG8</td>
+      <td>0.737</td>
+      <td>ABCG8</td>
+      <td>0.724</td>
+      <td>False</td>
+      <td>0.013</td>
+    </tr>
+    <tr>
+      <td>prior_scale_1.5</td>
+      <td>model_refit_map</td>
+      <td>bca6aa73fca7db990adb7f6b1c1983b1</td>
+      <td>HMGCR region</td>
+      <td>HMGCR</td>
+      <td>0.719</td>
+      <td>HMGCR</td>
+      <td>0.722</td>
+      <td>False</td>
+      <td>0.003</td>
+    </tr>
+    <tr>
+      <td>prior_scale_1.5</td>
+      <td>model_refit_map</td>
+      <td>7977a97f16317ac62d1755f723d779db</td>
+      <td>LPA region</td>
+      <td>LPA</td>
+      <td>0.689</td>
+      <td>LPA</td>
+      <td>0.631</td>
+      <td>False</td>
+      <td>0.058</td>
+    </tr>
+    <tr>
+      <td>prior_scale_1.5</td>
+      <td>model_refit_map</td>
+      <td>35996c25686ebaab7ff02700c5adee89</td>
+      <td>NPC1L1 region</td>
+      <td>NPC1L1</td>
+      <td>0.762</td>
+      <td>NPC1L1</td>
+      <td>0.764</td>
+      <td>False</td>
+      <td>0.002</td>
+    </tr>
+    <tr>
+      <td>prior_scale_1.5</td>
+      <td>model_refit_map</td>
+      <td>fc8876b06188d2d64001c936b6f11c80</td>
+      <td>LDLR region</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>prior_scale_1.5</td>
+      <td>model_refit_map</td>
+      <td>3d8d0092bbd144ceb18ebcb18c28c8e6</td>
+      <td>APOE/APOC region</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_distanceTssMean</td>
+      <td>model_refit_map</td>
+      <td>7816d9d3277e4887690cf7591c224bcd</td>
+      <td>PCSK9 region</td>
+      <td>PCSK9</td>
+      <td>0.414</td>
+      <td>PCSK9</td>
+      <td>0.405</td>
+      <td>False</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <td>without_distanceTssMean</td>
+      <td>model_refit_map</td>
+      <td>1446ebf0d3feb2602ea450a2156346af</td>
+      <td>ANGPTL3 region</td>
+      <td>DOCK7</td>
+      <td>0.620</td>
+      <td>DOCK7</td>
+      <td>0.600</td>
+      <td>False</td>
+      <td>0.021</td>
+    </tr>
+    <tr>
+      <td>without_distanceTssMean</td>
+      <td>model_refit_map</td>
+      <td>5eb8878b948ed248f0832a6a1b27d324</td>
+      <td>SORT1/CELSR2/PSRC1 region</td>
+      <td>CELSR2</td>
+      <td>0.770</td>
+      <td>CELSR2</td>
+      <td>0.760</td>
+      <td>False</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <td>without_distanceTssMean</td>
+      <td>model_refit_map</td>
+      <td>b2821c94b2ec7a3298ebed7598b85845</td>
+      <td>APOB region</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_distanceTssMean</td>
+      <td>model_refit_map</td>
+      <td>c717610c67981574d1f54731afe4cf46</td>
+      <td>ABCG5/ABCG8 region</td>
+      <td>ABCG8</td>
+      <td>0.736</td>
+      <td>ABCG8</td>
+      <td>0.724</td>
+      <td>False</td>
+      <td>0.012</td>
+    </tr>
+    <tr>
+      <td>without_distanceTssMean</td>
+      <td>model_refit_map</td>
+      <td>bca6aa73fca7db990adb7f6b1c1983b1</td>
+      <td>HMGCR region</td>
+      <td>HMGCR</td>
+      <td>0.730</td>
+      <td>HMGCR</td>
+      <td>0.722</td>
+      <td>False</td>
+      <td>0.008</td>
+    </tr>
+    <tr>
+      <td>without_distanceTssMean</td>
+      <td>model_refit_map</td>
+      <td>7977a97f16317ac62d1755f723d779db</td>
+      <td>LPA region</td>
+      <td>LPA</td>
+      <td>0.645</td>
+      <td>LPA</td>
+      <td>0.631</td>
+      <td>False</td>
+      <td>0.014</td>
+    </tr>
+    <tr>
+      <td>without_distanceTssMean</td>
+      <td>model_refit_map</td>
+      <td>35996c25686ebaab7ff02700c5adee89</td>
+      <td>NPC1L1 region</td>
+      <td>NPC1L1</td>
+      <td>0.780</td>
+      <td>NPC1L1</td>
+      <td>0.764</td>
+      <td>False</td>
+      <td>0.016</td>
+    </tr>
+    <tr>
+      <td>without_distanceTssMean</td>
+      <td>model_refit_map</td>
+      <td>fc8876b06188d2d64001c936b6f11c80</td>
+      <td>LDLR region</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_distanceTssMean</td>
+      <td>model_refit_map</td>
+      <td>3d8d0092bbd144ceb18ebcb18c28c8e6</td>
+      <td>APOE/APOC region</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_eQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>7816d9d3277e4887690cf7591c224bcd</td>
+      <td>PCSK9 region</td>
+      <td>PCSK9</td>
+      <td>0.319</td>
+      <td>PCSK9</td>
+      <td>0.405</td>
+      <td>False</td>
+      <td>0.152</td>
+    </tr>
+    <tr>
+      <td>without_eQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>1446ebf0d3feb2602ea450a2156346af</td>
+      <td>ANGPTL3 region</td>
+      <td>DOCK7</td>
+      <td>0.611</td>
+      <td>DOCK7</td>
+      <td>0.600</td>
+      <td>False</td>
+      <td>0.043</td>
+    </tr>
+    <tr>
+      <td>without_eQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>5eb8878b948ed248f0832a6a1b27d324</td>
+      <td>SORT1/CELSR2/PSRC1 region</td>
+      <td>CELSR2</td>
+      <td>0.765</td>
+      <td>CELSR2</td>
+      <td>0.760</td>
+      <td>False</td>
+      <td>0.005</td>
+    </tr>
+    <tr>
+      <td>without_eQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>b2821c94b2ec7a3298ebed7598b85845</td>
+      <td>APOB region</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_eQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>c717610c67981574d1f54731afe4cf46</td>
+      <td>ABCG5/ABCG8 region</td>
+      <td>ABCG8</td>
+      <td>0.763</td>
+      <td>ABCG8</td>
+      <td>0.724</td>
+      <td>False</td>
+      <td>0.039</td>
+    </tr>
+    <tr>
+      <td>without_eQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>bca6aa73fca7db990adb7f6b1c1983b1</td>
+      <td>HMGCR region</td>
+      <td>HMGCR</td>
+      <td>0.697</td>
+      <td>HMGCR</td>
+      <td>0.722</td>
+      <td>False</td>
+      <td>0.025</td>
+    </tr>
+    <tr>
+      <td>without_eQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>7977a97f16317ac62d1755f723d779db</td>
+      <td>LPA region</td>
+      <td>LPA</td>
+      <td>0.636</td>
+      <td>LPA</td>
+      <td>0.631</td>
+      <td>False</td>
+      <td>0.005</td>
+    </tr>
+    <tr>
+      <td>without_eQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>35996c25686ebaab7ff02700c5adee89</td>
+      <td>NPC1L1 region</td>
+      <td>NPC1L1</td>
+      <td>0.745</td>
+      <td>NPC1L1</td>
+      <td>0.764</td>
+      <td>False</td>
+      <td>0.020</td>
+    </tr>
+    <tr>
+      <td>without_eQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>fc8876b06188d2d64001c936b6f11c80</td>
+      <td>LDLR region</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_eQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>3d8d0092bbd144ceb18ebcb18c28c8e6</td>
+      <td>APOE/APOC region</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_pQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>7816d9d3277e4887690cf7591c224bcd</td>
+      <td>PCSK9 region</td>
+      <td>PCSK9</td>
+      <td>0.415</td>
+      <td>PCSK9</td>
+      <td>0.405</td>
+      <td>False</td>
+      <td>0.014</td>
+    </tr>
+    <tr>
+      <td>without_pQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>1446ebf0d3feb2602ea450a2156346af</td>
+      <td>ANGPTL3 region</td>
+      <td>DOCK7</td>
+      <td>0.606</td>
+      <td>DOCK7</td>
+      <td>0.600</td>
+      <td>False</td>
+      <td>0.006</td>
+    </tr>
+    <tr>
+      <td>without_pQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>5eb8878b948ed248f0832a6a1b27d324</td>
+      <td>SORT1/CELSR2/PSRC1 region</td>
+      <td>CELSR2</td>
+      <td>0.697</td>
+      <td>CELSR2</td>
+      <td>0.760</td>
+      <td>False</td>
+      <td>0.071</td>
+    </tr>
+    <tr>
+      <td>without_pQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>b2821c94b2ec7a3298ebed7598b85845</td>
+      <td>APOB region</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_pQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>c717610c67981574d1f54731afe4cf46</td>
+      <td>ABCG5/ABCG8 region</td>
+      <td>ABCG8</td>
+      <td>0.725</td>
+      <td>ABCG8</td>
+      <td>0.724</td>
+      <td>False</td>
+      <td>0.001</td>
+    </tr>
+    <tr>
+      <td>without_pQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>bca6aa73fca7db990adb7f6b1c1983b1</td>
+      <td>HMGCR region</td>
+      <td>HMGCR</td>
+      <td>0.728</td>
+      <td>HMGCR</td>
+      <td>0.722</td>
+      <td>False</td>
+      <td>0.006</td>
+    </tr>
+    <tr>
+      <td>without_pQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>7977a97f16317ac62d1755f723d779db</td>
+      <td>LPA region</td>
+      <td>LPA</td>
+      <td>0.639</td>
+      <td>LPA</td>
+      <td>0.631</td>
+      <td>False</td>
+      <td>0.008</td>
+    </tr>
+    <tr>
+      <td>without_pQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>35996c25686ebaab7ff02700c5adee89</td>
+      <td>NPC1L1 region</td>
+      <td>NPC1L1</td>
+      <td>0.776</td>
+      <td>NPC1L1</td>
+      <td>0.764</td>
+      <td>False</td>
+      <td>0.011</td>
+    </tr>
+    <tr>
+      <td>without_pQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>fc8876b06188d2d64001c936b6f11c80</td>
+      <td>LDLR region</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_pQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>3d8d0092bbd144ceb18ebcb18c28c8e6</td>
+      <td>APOE/APOC region</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_sQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>7816d9d3277e4887690cf7591c224bcd</td>
+      <td>PCSK9 region</td>
+      <td>PCSK9</td>
+      <td>0.431</td>
+      <td>PCSK9</td>
+      <td>0.405</td>
+      <td>False</td>
+      <td>0.040</td>
+    </tr>
+    <tr>
+      <td>without_sQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>1446ebf0d3feb2602ea450a2156346af</td>
+      <td>ANGPTL3 region</td>
+      <td>DOCK7</td>
+      <td>0.390</td>
+      <td>DOCK7</td>
+      <td>0.600</td>
+      <td>False</td>
+      <td>0.210</td>
+    </tr>
+    <tr>
+      <td>without_sQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>5eb8878b948ed248f0832a6a1b27d324</td>
+      <td>SORT1/CELSR2/PSRC1 region</td>
+      <td>CELSR2</td>
+      <td>0.765</td>
+      <td>CELSR2</td>
+      <td>0.760</td>
+      <td>False</td>
+      <td>0.005</td>
+    </tr>
+    <tr>
+      <td>without_sQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>b2821c94b2ec7a3298ebed7598b85845</td>
+      <td>APOB region</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_sQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>c717610c67981574d1f54731afe4cf46</td>
+      <td>ABCG5/ABCG8 region</td>
+      <td>ABCG8</td>
+      <td>0.530</td>
+      <td>ABCG8</td>
+      <td>0.724</td>
+      <td>False</td>
+      <td>0.194</td>
+    </tr>
+    <tr>
+      <td>without_sQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>bca6aa73fca7db990adb7f6b1c1983b1</td>
+      <td>HMGCR region</td>
+      <td>HMGCR</td>
+      <td>0.669</td>
+      <td>HMGCR</td>
+      <td>0.722</td>
+      <td>False</td>
+      <td>0.053</td>
+    </tr>
+    <tr>
+      <td>without_sQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>7977a97f16317ac62d1755f723d779db</td>
+      <td>LPA region</td>
+      <td>LPA</td>
+      <td>0.641</td>
+      <td>LPA</td>
+      <td>0.631</td>
+      <td>False</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <td>without_sQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>35996c25686ebaab7ff02700c5adee89</td>
+      <td>NPC1L1 region</td>
+      <td>NPC1L1</td>
+      <td>0.775</td>
+      <td>NPC1L1</td>
+      <td>0.764</td>
+      <td>False</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <td>without_sQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>fc8876b06188d2d64001c936b6f11c80</td>
+      <td>LDLR region</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_sQtlColocH4Maximum</td>
+      <td>model_refit_map</td>
+      <td>3d8d0092bbd144ceb18ebcb18c28c8e6</td>
+      <td>APOE/APOC region</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_vepMean</td>
+      <td>model_refit_map</td>
+      <td>7816d9d3277e4887690cf7591c224bcd</td>
+      <td>PCSK9 region</td>
+      <td>PCSK9</td>
+      <td>0.360</td>
+      <td>PCSK9</td>
+      <td>0.405</td>
+      <td>False</td>
+      <td>0.045</td>
+    </tr>
+    <tr>
+      <td>without_vepMean</td>
+      <td>model_refit_map</td>
+      <td>1446ebf0d3feb2602ea450a2156346af</td>
+      <td>ANGPTL3 region</td>
+      <td>DOCK7</td>
+      <td>0.611</td>
+      <td>DOCK7</td>
+      <td>0.600</td>
+      <td>False</td>
+      <td>0.011</td>
+    </tr>
+    <tr>
+      <td>without_vepMean</td>
+      <td>model_refit_map</td>
+      <td>5eb8878b948ed248f0832a6a1b27d324</td>
+      <td>SORT1/CELSR2/PSRC1 region</td>
+      <td>CELSR2</td>
+      <td>0.571</td>
+      <td>CELSR2</td>
+      <td>0.760</td>
+      <td>False</td>
+      <td>0.189</td>
+    </tr>
+    <tr>
+      <td>without_vepMean</td>
+      <td>model_refit_map</td>
+      <td>b2821c94b2ec7a3298ebed7598b85845</td>
+      <td>APOB region</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_vepMean</td>
+      <td>model_refit_map</td>
+      <td>c717610c67981574d1f54731afe4cf46</td>
+      <td>ABCG5/ABCG8 region</td>
+      <td>ABCG8</td>
+      <td>0.677</td>
+      <td>ABCG8</td>
+      <td>0.724</td>
+      <td>False</td>
+      <td>0.047</td>
+    </tr>
+    <tr>
+      <td>without_vepMean</td>
+      <td>model_refit_map</td>
+      <td>bca6aa73fca7db990adb7f6b1c1983b1</td>
+      <td>HMGCR region</td>
+      <td>HMGCR</td>
+      <td>0.729</td>
+      <td>HMGCR</td>
+      <td>0.722</td>
+      <td>False</td>
+      <td>0.007</td>
+    </tr>
+    <tr>
+      <td>without_vepMean</td>
+      <td>model_refit_map</td>
+      <td>7977a97f16317ac62d1755f723d779db</td>
+      <td>LPA region</td>
+      <td>LPA</td>
+      <td>0.411</td>
+      <td>LPA</td>
+      <td>0.631</td>
+      <td>False</td>
+      <td>0.220</td>
+    </tr>
+    <tr>
+      <td>without_vepMean</td>
+      <td>model_refit_map</td>
+      <td>35996c25686ebaab7ff02700c5adee89</td>
+      <td>NPC1L1 region</td>
+      <td>NPC1L1</td>
+      <td>0.776</td>
+      <td>NPC1L1</td>
+      <td>0.764</td>
+      <td>False</td>
+      <td>0.012</td>
+    </tr>
+    <tr>
+      <td>without_vepMean</td>
+      <td>model_refit_map</td>
+      <td>fc8876b06188d2d64001c936b6f11c80</td>
+      <td>LDLR region</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_vepMean</td>
+      <td>model_refit_map</td>
+      <td>3d8d0092bbd144ceb18ebcb18c28c8e6</td>
+      <td>APOE/APOC region</td>
+      <td>APOE</td>
+      <td>0.796</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.004</td>
+    </tr>
+    <tr>
+      <td>without_e2gMean</td>
+      <td>model_refit_map</td>
+      <td>7816d9d3277e4887690cf7591c224bcd</td>
+      <td>PCSK9 region</td>
+      <td>PCSK9</td>
+      <td>0.435</td>
+      <td>PCSK9</td>
+      <td>0.405</td>
+      <td>False</td>
+      <td>0.030</td>
+    </tr>
+    <tr>
+      <td>without_e2gMean</td>
+      <td>model_refit_map</td>
+      <td>1446ebf0d3feb2602ea450a2156346af</td>
+      <td>ANGPTL3 region</td>
+      <td>DOCK7</td>
+      <td>0.630</td>
+      <td>DOCK7</td>
+      <td>0.600</td>
+      <td>False</td>
+      <td>0.030</td>
+    </tr>
+    <tr>
+      <td>without_e2gMean</td>
+      <td>model_refit_map</td>
+      <td>5eb8878b948ed248f0832a6a1b27d324</td>
+      <td>SORT1/CELSR2/PSRC1 region</td>
+      <td>CELSR2</td>
+      <td>0.758</td>
+      <td>CELSR2</td>
+      <td>0.760</td>
+      <td>False</td>
+      <td>0.004</td>
+    </tr>
+    <tr>
+      <td>without_e2gMean</td>
+      <td>model_refit_map</td>
+      <td>b2821c94b2ec7a3298ebed7598b85845</td>
+      <td>APOB region</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_e2gMean</td>
+      <td>model_refit_map</td>
+      <td>c717610c67981574d1f54731afe4cf46</td>
+      <td>ABCG5/ABCG8 region</td>
+      <td>ABCG8</td>
+      <td>0.738</td>
+      <td>ABCG8</td>
+      <td>0.724</td>
+      <td>False</td>
+      <td>0.014</td>
+    </tr>
+    <tr>
+      <td>without_e2gMean</td>
+      <td>model_refit_map</td>
+      <td>bca6aa73fca7db990adb7f6b1c1983b1</td>
+      <td>HMGCR region</td>
+      <td>HMGCR</td>
+      <td>0.736</td>
+      <td>HMGCR</td>
+      <td>0.722</td>
+      <td>False</td>
+      <td>0.014</td>
+    </tr>
+    <tr>
+      <td>without_e2gMean</td>
+      <td>model_refit_map</td>
+      <td>7977a97f16317ac62d1755f723d779db</td>
+      <td>LPA region</td>
+      <td>LPA</td>
+      <td>0.674</td>
+      <td>LPA</td>
+      <td>0.631</td>
+      <td>False</td>
+      <td>0.043</td>
+    </tr>
+    <tr>
+      <td>without_e2gMean</td>
+      <td>model_refit_map</td>
+      <td>35996c25686ebaab7ff02700c5adee89</td>
+      <td>NPC1L1 region</td>
+      <td>NPC1L1</td>
+      <td>0.359</td>
+      <td>NPC1L1</td>
+      <td>0.764</td>
+      <td>False</td>
+      <td>0.405</td>
+    </tr>
+    <tr>
+      <td>without_e2gMean</td>
+      <td>model_refit_map</td>
+      <td>fc8876b06188d2d64001c936b6f11c80</td>
+      <td>LDLR region</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>without_e2gMean</td>
+      <td>model_refit_map</td>
+      <td>3d8d0092bbd144ceb18ebcb18c28c8e6</td>
+      <td>APOE/APOC region</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.1</td>
+      <td>probability_assumption</td>
+      <td>7816d9d3277e4887690cf7591c224bcd</td>
+      <td>PCSK9 region</td>
+      <td>PCSK9</td>
+      <td>0.455</td>
+      <td>PCSK9</td>
+      <td>0.405</td>
+      <td>False</td>
+      <td>0.051</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.1</td>
+      <td>probability_assumption</td>
+      <td>1446ebf0d3feb2602ea450a2156346af</td>
+      <td>ANGPTL3 region</td>
+      <td>DOCK7</td>
+      <td>0.674</td>
+      <td>DOCK7</td>
+      <td>0.600</td>
+      <td>False</td>
+      <td>0.075</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.1</td>
+      <td>probability_assumption</td>
+      <td>5eb8878b948ed248f0832a6a1b27d324</td>
+      <td>SORT1/CELSR2/PSRC1 region</td>
+      <td>CELSR2</td>
+      <td>0.855</td>
+      <td>CELSR2</td>
+      <td>0.760</td>
+      <td>False</td>
+      <td>0.095</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.1</td>
+      <td>probability_assumption</td>
+      <td>b2821c94b2ec7a3298ebed7598b85845</td>
+      <td>APOB region</td>
+      <td>APOB</td>
+      <td>0.866</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>False</td>
+      <td>0.096</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.1</td>
+      <td>probability_assumption</td>
+      <td>c717610c67981574d1f54731afe4cf46</td>
+      <td>ABCG5/ABCG8 region</td>
+      <td>ABCG8</td>
+      <td>0.815</td>
+      <td>ABCG8</td>
+      <td>0.724</td>
+      <td>False</td>
+      <td>0.091</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.1</td>
+      <td>probability_assumption</td>
+      <td>bca6aa73fca7db990adb7f6b1c1983b1</td>
+      <td>HMGCR region</td>
+      <td>HMGCR</td>
+      <td>0.812</td>
+      <td>HMGCR</td>
+      <td>0.722</td>
+      <td>False</td>
+      <td>0.090</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.1</td>
+      <td>probability_assumption</td>
+      <td>7977a97f16317ac62d1755f723d779db</td>
+      <td>LPA region</td>
+      <td>LPA</td>
+      <td>0.710</td>
+      <td>LPA</td>
+      <td>0.631</td>
+      <td>False</td>
+      <td>0.079</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.1</td>
+      <td>probability_assumption</td>
+      <td>35996c25686ebaab7ff02700c5adee89</td>
+      <td>NPC1L1 region</td>
+      <td>NPC1L1</td>
+      <td>0.860</td>
+      <td>NPC1L1</td>
+      <td>0.764</td>
+      <td>False</td>
+      <td>0.096</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.1</td>
+      <td>probability_assumption</td>
+      <td>fc8876b06188d2d64001c936b6f11c80</td>
+      <td>LDLR region</td>
+      <td>LDLR</td>
+      <td>0.900</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.100</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.1</td>
+      <td>probability_assumption</td>
+      <td>3d8d0092bbd144ceb18ebcb18c28c8e6</td>
+      <td>APOE/APOC region</td>
+      <td>APOE</td>
+      <td>0.900</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.100</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.4</td>
+      <td>probability_assumption</td>
+      <td>7816d9d3277e4887690cf7591c224bcd</td>
+      <td>PCSK9 region</td>
+      <td>PCSK9</td>
+      <td>0.304</td>
+      <td>PCSK9</td>
+      <td>0.405</td>
+      <td>False</td>
+      <td>0.101</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.4</td>
+      <td>probability_assumption</td>
+      <td>1446ebf0d3feb2602ea450a2156346af</td>
+      <td>ANGPTL3 region</td>
+      <td>DOCK7</td>
+      <td>0.450</td>
+      <td>DOCK7</td>
+      <td>0.600</td>
+      <td>False</td>
+      <td>0.150</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.4</td>
+      <td>probability_assumption</td>
+      <td>5eb8878b948ed248f0832a6a1b27d324</td>
+      <td>SORT1/CELSR2/PSRC1 region</td>
+      <td>CELSR2</td>
+      <td>0.570</td>
+      <td>CELSR2</td>
+      <td>0.760</td>
+      <td>False</td>
+      <td>0.190</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.4</td>
+      <td>probability_assumption</td>
+      <td>b2821c94b2ec7a3298ebed7598b85845</td>
+      <td>APOB region</td>
+      <td>APOB</td>
+      <td>0.577</td>
+      <td>APOB</td>
+      <td>0.770</td>
+      <td>False</td>
+      <td>0.192</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.4</td>
+      <td>probability_assumption</td>
+      <td>c717610c67981574d1f54731afe4cf46</td>
+      <td>ABCG5/ABCG8 region</td>
+      <td>ABCG8</td>
+      <td>0.543</td>
+      <td>ABCG8</td>
+      <td>0.724</td>
+      <td>False</td>
+      <td>0.181</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.4</td>
+      <td>probability_assumption</td>
+      <td>bca6aa73fca7db990adb7f6b1c1983b1</td>
+      <td>HMGCR region</td>
+      <td>HMGCR</td>
+      <td>0.541</td>
+      <td>HMGCR</td>
+      <td>0.722</td>
+      <td>False</td>
+      <td>0.180</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.4</td>
+      <td>probability_assumption</td>
+      <td>7977a97f16317ac62d1755f723d779db</td>
+      <td>LPA region</td>
+      <td>LPA</td>
+      <td>0.473</td>
+      <td>LPA</td>
+      <td>0.631</td>
+      <td>False</td>
+      <td>0.158</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.4</td>
+      <td>probability_assumption</td>
+      <td>35996c25686ebaab7ff02700c5adee89</td>
+      <td>NPC1L1 region</td>
+      <td>NPC1L1</td>
+      <td>0.573</td>
+      <td>NPC1L1</td>
+      <td>0.764</td>
+      <td>False</td>
+      <td>0.191</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.4</td>
+      <td>probability_assumption</td>
+      <td>fc8876b06188d2d64001c936b6f11c80</td>
+      <td>LDLR region</td>
+      <td>LDLR</td>
+      <td>0.600</td>
+      <td>LDLR</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.200</td>
+    </tr>
+    <tr>
+      <td>unresolved_mass_0.4</td>
+      <td>probability_assumption</td>
+      <td>3d8d0092bbd144ceb18ebcb18c28c8e6</td>
+      <td>APOE/APOC region</td>
+      <td>APOE</td>
+      <td>0.600</td>
+      <td>APOE</td>
+      <td>0.800</td>
+      <td>False</td>
+      <td>0.200</td>
+    </tr>
+  </tbody>
+</table></div>
+  <h2>Data provenance</h2>
+  <div class="card"><dl><dt>GWAS study</dt><dd>GCST90019512</dd><dt>Trait</dt><dd>Low density lipoprotein cholesterol levels</dd><dt>Genome build</dt><dd>GRCh38</dd><dt>Open Targets release</dt><dd>26.09</dd><dt>Training release</dt><dd>26.06</dd><dt>Training revision</dt><dd>6abe9cc490222986925e1acca696d48c9b2437a4</dd><dt>Snapshot SHA-256</dt><dd>08228615ad728112f676a25dfa1dc3bba3b83042681b29271a95760df216a98f</dd><dt>Analysis source SHA-256</dt><dd>f79d4a1f2937583e73e6e022c02ccafeaf97353c902cb34b8d2b03e96ce36252</dd><dt>Open Targets TLS verified</dt><dd>True</dd><dt>SORT1 JSON/metadata TLS verified</dt><dd>True</dd></dl></div>
+  <p>Raw credible-set variants, PIPs, candidate features, model artifacts and the complete run manifest are beside this report. The Open Targets external L2G score is retained only as a comparison column and is not used by the Bayesian model.</p>
+  <h2>Interpretation limits</h2>
+  <ul>
+    <li>The API surfaces Open Targets candidates whose external L2G score is at least 0.05; omitted genes are represented only through unresolved mass.</li>
+    <li>Training labels are curated biological knowledge and may partly rely on the same evidence classes, so held-out accuracy can still be optimistic.</li>
+    <li>QTL feature values summarize the maximum across available studies/tissues and zeros do not cleanly distinguish a true null from unavailable or underpowered evidence.</li>
+    <li>Out-of-sample LD was used for these SuSiE-inf credible sets. Ancestry/LD mismatch and multiple biological mediators remain model limitations.</li>
+  </ul>
+  <p class="muted">Generated 2026-09-28T04:41:47.415128+00:00. Reproduce with <code>bayesv2g run</code>.</p>
+</main></body></html>

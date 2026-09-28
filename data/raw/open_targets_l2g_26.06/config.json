@@ -1,0 +1,42 @@
+{
+  "sklearn": {
+    "columns": [
+      "studyLocusId",
+      "geneId",
+      "goldStandardSet",
+      "eQtlColocClppMaximum",
+      "pQtlColocClppMaximum",
+      "sQtlColocClppMaximum",
+      "eQtlColocH4Maximum",
+      "pQtlColocH4Maximum",
+      "sQtlColocH4Maximum",
+      "eQtlColocClppMaximumNeighbourhood",
+      "pQtlColocClppMaximumNeighbourhood",
+      "sQtlColocClppMaximumNeighbourhood",
+      "eQtlColocH4MaximumNeighbourhood",
+      "pQtlColocH4MaximumNeighbourhood",
+      "sQtlColocH4MaximumNeighbourhood",
+      "distanceSentinelFootprint",
+      "distanceSentinelFootprintNeighbourhood",
+      "distanceFootprintMean",
+      "distanceFootprintMeanNeighbourhood",
+      "distanceTssMean",
+      "distanceTssMeanNeighbourhood",
+      "distanceSentinelTss",
+      "distanceSentinelTssNeighbourhood",
+      "vepMaximum",
+      "vepMaximumNeighbourhood",
+      "vepMean",
+      "vepMeanNeighbourhood",
+      "e2gMean",
+      "e2gMeanNeighbourhood",
+      "geneCount500kb",
+      "proteinGeneCount500kb",
+      "credibleSetConfidence",
+      "transPQtlColocH4Maximum",
+      "transPQtlColocH4MaximumNeighbourhood"
+    ],
+    "sklearn_version": "1.7.2"
+  },
+  "task": "tabular-classification"
+}

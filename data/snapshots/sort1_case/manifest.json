@@ -1,0 +1,59 @@
+{
+  "created_at_utc": "2026-09-26T01:17:17.971010+00:00",
+  "eqtl_rows": 8631,
+  "files": {
+    "ensembl_1000g_eur_ld_rs12740374.json": {
+      "bytes": 1697,
+      "sha256": "17ed06086f617db2af94ae943cac2958dda7026e2293554634514c4af3dbab15"
+    },
+    "ensembl_protein_coding_genes.json": {
+      "bytes": 15318,
+      "sha256": "a3bc705c15c2ae073e69087d3a2996fdcd87b0ef3db82ac9c1abdd9d51bf1d65"
+    },
+    "ensembl_vep_rs12740374.json": {
+      "bytes": 779,
+      "sha256": "85b6dfae1d6718a0317f058526791ea5f274c64f62d167b6aa88d235ef44ffe8"
+    },
+    "eqtl_catalogue_qtd000266_liver_sort1_genes.tsv.gz": {
+      "bytes": 179534,
+      "sha256": "64950ec5430e13927ba2d84abda10830d7c0be7abdb8a416fb2532ab227b9495"
+    },
+    "eqtl_catalogue_qtd000584_plasma_sort1_genes.tsv.gz": {
+      "bytes": 136325,
+      "sha256": "74e9a1f1e556e7eebf212c591e84be57ba0fb92f1a14ab40f871ebfdb29598e0"
+    },
+    "gtex_v10_liver_rs12740374_eqtl.json": {
+      "bytes": 1673,
+      "sha256": "c86491ec89d2fda4eaf2ee263f8e60fc51a9bc867bb0850cb59516f608dd270f"
+    },
+    "gtex_variant_lookup_rs12740374.json": {
+      "bytes": 468,
+      "sha256": "7bc1f2b3e2a2ca5eacb58bcdd162d590982ea4315793f9130504e572fca9a4ff"
+    },
+    "gwas_gcst90018961_chr1_108774968_109774968.tsv.gz": {
+      "bytes": 131018,
+      "sha256": "ff7665b3e2aa1095d409239604091eefa06f5bba1ba501b3da95ff0c220b6a1b"
+    },
+    "gwas_gcst90018961_metadata.yaml": {
+      "bytes": 996,
+      "sha256": "53528f79c297a79d06db3d6443941cb55d5ae2c9bfcefaad5a909d14bc308b60"
+    }
+  },
+  "genome_build": "GRCh38",
+  "gwas_rows": 5772,
+  "lead_variant": "rs12740374",
+  "lead_variant_grch38": "1_109274968_G_T",
+  "pqtl_rows": 3892,
+  "sources": {
+    "ensembl_rest": "https://rest.ensembl.org",
+    "eqtl_catalogue_liver_qtd000266": "https://ftp.ebi.ac.uk/pub/databases/spot/eQTL/sumstats/QTS000015/QTD000266/QTD000266.all.tsv.gz",
+    "eqtl_catalogue_plasma_pqtl_qtd000584": "https://ftp.ebi.ac.uk/pub/databases/spot/eQTL/sumstats/QTS000035/QTD000584/QTD000584.all.tsv.gz",
+    "gtex_api": "https://gtexportal.org/api/v2",
+    "gwas_metadata": "https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST90018001-GCST90019000/GCST90018961/harmonised/GCST90018961.h.tsv.gz-meta.yaml",
+    "gwas_summary_statistics": "https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST90018001-GCST90019000/GCST90018961/harmonised/GCST90018961.h.tsv.gz"
+  },
+  "study_id": "GCST90018961",
+  "tls_verified_for_json_and_metadata": true,
+  "trait": "LDL cholesterol",
+  "window": "1:108774968-109774968"
+}

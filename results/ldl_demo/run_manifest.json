@@ -1,0 +1,169 @@
+{
+  "analysis_source": {
+    "aggregate_sha256": "f79d4a1f2937583e73e6e022c02ccafeaf97353c902cb34b8d2b03e96ce36252",
+    "files": {
+      "config/demo_ldl.json": "85c3b8f5d3e84fa77ab52c0d918833e0d8ae56ce422e226a9044ab97056746d3",
+      "pyproject.toml": "6f1d818c51e08fe29f83d2353cdcb4c5ac565d71651438106d9a06a3bc651663",
+      "requirements.lock": "09cd7b6ef367642108471f42d78312693f987e03371110efcfc2d34efb7df7eb",
+      "src/bayesv2g/__init__.py": "d8997e4997bc46d6882665061543727c258dcb3299c0f14806aeeab9a58a7a4e",
+      "src/bayesv2g/__main__.py": "bcfb921f33a1415d16cab0ba0baa9640a6df9582e6b25c2d77f569248da6dfe5",
+      "src/bayesv2g/case_study.py": "0864fbd481b650f0e8ba0f70f57df56654971fdc148d64135851c3f1788af4bd",
+      "src/bayesv2g/cli.py": "0ea12641b281e0f9b719fc05a88b540b04ac1bea4ad410141cbdc34b3f509d2f",
+      "src/bayesv2g/coloc.py": "a75c56fd13411293aa10434feca3a982bce658724fcfa1136625cdc9a1da8341",
+      "src/bayesv2g/config.py": "ec43bb223d9d665986e080f784b46e90e5c4b762a59293d5d0920c29b000fd66",
+      "src/bayesv2g/data_sources.py": "481b630ad05bb80fe9efb607c3eccc72717240e5ad8db38f0f15cfd433ae53ed",
+      "src/bayesv2g/default_config.json": "5784d61be9a53f717687dc861754665130ece24fe13486bceb43ec3ed0f27e24",
+      "src/bayesv2g/evaluation.py": "f3aca1812ac537290c483bbaaa9ae58c81be9222bff8dd1e2787e57862aa269d",
+      "src/bayesv2g/features.py": "ff817d4b7d5727f67f0975500ab115e57bebe491d2cb34ed556a92a7224cc8a6",
+      "src/bayesv2g/finemap.py": "3ddb3739401f47e485f9d53ec79db75feec68dcff2abef18f490e636ac55e001",
+      "src/bayesv2g/model.py": "0e98500bf8fc8e9e8e21639161ca1497f6e935d3b6b0e63112dfa0cc9f03034d",
+      "src/bayesv2g/pipeline.py": "355012b084cc39f7dbe048dbe779f4a22dfbb333441140143e2267545d27d2f1",
+      "src/bayesv2g/reporting.py": "1e0246d7705e1d2a2acea63ded6c18f7b76b3a996b001c7d19d8fb5bda98580e"
+    }
+  },
+  "bayesv2g_version": "0.1.0",
+  "candidate_definition": "Open Targets Platform L2G predictions surfaced at external score >= 0.05",
+  "config": {
+    "demo_loci": [
+      {
+        "label": "PCSK9 region",
+        "study_locus_id": "7816d9d3277e4887690cf7591c224bcd"
+      },
+      {
+        "label": "ANGPTL3 region",
+        "study_locus_id": "1446ebf0d3feb2602ea450a2156346af"
+      },
+      {
+        "label": "SORT1/CELSR2/PSRC1 region",
+        "study_locus_id": "5eb8878b948ed248f0832a6a1b27d324"
+      },
+      {
+        "label": "APOB region",
+        "study_locus_id": "b2821c94b2ec7a3298ebed7598b85845"
+      },
+      {
+        "label": "ABCG5/ABCG8 region",
+        "study_locus_id": "c717610c67981574d1f54731afe4cf46"
+      },
+      {
+        "label": "HMGCR region",
+        "study_locus_id": "bca6aa73fca7db990adb7f6b1c1983b1"
+      },
+      {
+        "label": "LPA region",
+        "study_locus_id": "7977a97f16317ac62d1755f723d779db"
+      },
+      {
+        "label": "NPC1L1 region",
+        "study_locus_id": "35996c25686ebaab7ff02700c5adee89"
+      },
+      {
+        "label": "LDLR region",
+        "study_locus_id": "fc8876b06188d2d64001c936b6f11c80"
+      },
+      {
+        "label": "APOE/APOC region",
+        "study_locus_id": "3d8d0092bbd144ceb18ebcb18c28c8e6"
+      }
+    ],
+    "efo_id": "EFO_0004611",
+    "features": [
+      "distanceTssMean",
+      "eQtlColocH4Maximum",
+      "pQtlColocH4Maximum",
+      "sQtlColocH4Maximum",
+      "vepMean",
+      "e2gMean"
+    ],
+    "genome_build": "GRCh38",
+    "open_targets_endpoint": "https://api.platform.opentargets.org/api/v4/graphql",
+    "open_targets_release": "26.09",
+    "open_targets_snapshot": "data/snapshots/open_targets_26.09_ldl_loci.json",
+    "posterior_draws": 2000,
+    "prior_scale": 0.75,
+    "project": "BayesV2G LDL demonstration",
+    "random_seed": 20260925,
+    "sort1_case_directory": "data/snapshots/sort1_case",
+    "study_id": "GCST90019512",
+    "training_directory": "data/raw/open_targets_l2g_26.06",
+    "training_release": "26.06",
+    "training_repository": "opentargets/locus_to_gene_26.06",
+    "training_revision": "6abe9cc490222986925e1acca696d48c9b2437a4",
+    "trait": "Low density lipoprotein cholesterol levels",
+    "unresolved_mass": 0.2
+  },
+  "demo_loci_excluded_from_training": {
+    "loci": 3,
+    "rows": 49
+  },
+  "external_l2g_score_used_as_feature": false,
+  "generated_at_utc": "2026-09-28T04:41:47.415128+00:00",
+  "held_out_paired_comparison": {
+    "bootstrap_iterations": 10000.0,
+    "ci_lower_95": 0.04580152671755725,
+    "ci_upper_95": 0.10162213740458015,
+    "first_model": "BayesV2G",
+    "improved_loci": 153.0,
+    "n_loci": 1048.0,
+    "second_model": "distance_only",
+    "tied_loci": 818.0,
+    "top1_difference": 0.07299618320610687,
+    "worsened_loci": 77.0
+  },
+  "input_files": {
+    "open_targets_snapshot": {
+      "path": "data/snapshots/open_targets_26.09_ldl_loci.json",
+      "sha256": "08228615ad728112f676a25dfa1dc3bba3b83042681b29271a95760df216a98f"
+    },
+    "sort1_case_manifest": {
+      "path": "data/snapshots/sort1_case/manifest.json",
+      "sha256": "164dc76434e6c9444f6d04d203728e6fee111f105db80b8be65aa783de3bf444"
+    },
+    "test": {
+      "path": "data/raw/open_targets_l2g_26.06/test.parquet",
+      "sha256": "d8f6bad02336095ebac5c87dd59f3e5daae6ff637fa3b502d6b404c0ab5e09d9"
+    },
+    "training": {
+      "path": "data/raw/open_targets_l2g_26.06/train.parquet",
+      "sha256": "b0dbeb6d1139a07de77ea8522656d780ee1f337c2eb2651c7cb8001e42b60664"
+    }
+  },
+  "numpy": "2.5.3",
+  "open_targets_api_release": {
+    "iteration": null,
+    "month": "09",
+    "year": "26"
+  },
+  "pandas": "2.3.3",
+  "platform": "macOS-15.1-arm64-arm-64bit",
+  "probability_scope": "conditional on Open Targets score >= 0.05 candidate ascertainment",
+  "python": "3.12.6 (v3.12.6:a4a2d2b0d85, Sep  6 2024, 16:08:03) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "scipy": "1.18.1",
+  "sort1_case_study": {
+    "approximate_95_credible_set_coverage": 0.9900847108234357,
+    "approximate_95_credible_set_size": 1,
+    "gwas_study_id": "GCST90018961",
+    "gwas_variant_count": 5772,
+    "lead_variant": "rs12740374",
+    "lead_variant_pip": 0.9900847108234357,
+    "main_ranking_study_id": "GCST90019512",
+    "maximum_eqtl_pp_h4": 0.9999899855130346,
+    "regional_colocalization_count": 4,
+    "sort1_pqtl_pp_h4": 0.01640470284507952,
+    "source_tls_verified": true,
+    "verified_source_file_count": 9
+  },
+  "source_tls_verification": {
+    "open_targets_snapshot": true,
+    "sort1_case_json_and_metadata": true
+  },
+  "training_fit": {
+    "n_groups": 6180,
+    "n_positive_rows": 6436,
+    "n_rows": 98999,
+    "objective_at_map": 6989.236747932416,
+    "optimizer_evaluations": 20,
+    "optimizer_iterations": 19,
+    "optimizer_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+  }
+}
